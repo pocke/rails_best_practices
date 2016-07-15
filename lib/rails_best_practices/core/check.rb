@@ -369,6 +369,7 @@ module RailsBestPractices
             class_expression = Regexp.new class_name
 
             class_names = Prepares.klasses
+                                  .values
                                   .select { |klass| klass.class_name == method.class_name }
                                   .map(&:extend_class_name)
                                   .compact

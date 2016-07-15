@@ -5,7 +5,14 @@ module RailsBestPractices
   module Prepares
     class <<self
       def klasses
-        models + mailers + controllers
+        @klasses ||= begin
+          array = models + mailers + controllers
+          klasses = {}
+          array.each do |klass|
+            klasses[klass.to_s] = klass
+          end
+          klasses
+        end
       end
 
       def models
